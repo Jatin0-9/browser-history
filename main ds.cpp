@@ -2,21 +2,19 @@
 #include <string>
 using namespace std;
 
-// Node of the linked list that backs the stack
 struct Node {
     string url;
     Node* next;
     Node(const string& u) : url(u), next(nullptr) {}
 };
 
-// Stack implemented using a singly linked list (LIFO)
 class Stack {
     Node* topNode;
     int count;
 public:
     Stack() : topNode(nullptr), count(0) {}
     ~Stack() { clear(); }
-    Stack(const Stack&) = delete;            // avoid accidental shallow copies
+    Stack(const Stack&) = delete;            
     Stack& operator=(const Stack&) = delete;
 
     void push(const string& url) {
@@ -51,7 +49,6 @@ public:
     }
 };
 
-// Browser built on two stacks
 class Browser {
     Stack backStack;
     Stack forwardStack;
@@ -60,9 +57,9 @@ public:
     Browser() : current("about:blank") {}
 
     void visit(const string& url) {
-        backStack.push(current);   // save current page
+        backStack.push(current);  
         current = url;
-        forwardStack.clear();      // new visit invalidates forward history
+        forwardStack.clear();      //
         cout << "Visited: " << current << "\n";
     }
 
